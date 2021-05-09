@@ -1,5 +1,8 @@
 package com.nextgeneration.Services;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,10 +34,16 @@ public class CalendarService {
 	public Calendar update(int id,Calendar calendar) {
 		Calendar old = getById(id);
 		old.setAppointments(calendar.getAppointments());
-		old.setDay(calendar.getDay());
-		old.setWeek(calendar.getWeek());
-		old.setYear(calendar.getYear());
+		old.setDate(calendar.getDate());
 		return calendarRepository.save(old);
+	}
+	
+	public List<Calendar> getCalendarByDate(Date date){
+		return calendarRepository.findAllByDate(date);
+	}
+	
+	public long count() {
+		return calendarRepository.count();
 	}
 
 }

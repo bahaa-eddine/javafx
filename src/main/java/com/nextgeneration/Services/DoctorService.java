@@ -38,5 +38,9 @@ public class DoctorService {
 		old.setSpeciality(doctor.getSpeciality());
 		return doctorRepository.save(old);
 	}
+	
+	public long count() {
+		return doctorRepository.count();
+	}
 
 }

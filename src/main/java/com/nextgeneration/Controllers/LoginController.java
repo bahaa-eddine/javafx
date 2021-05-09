@@ -3,6 +3,7 @@ package com.nextgeneration.Controllers;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import com.nextgeneration.Services.AdminService;
@@ -31,6 +32,8 @@ public class LoginController {
 	private Button loginButton;
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private ApplicationContext applicationContext;
 	
 	@FXML
 	void login(ActionEvent event) throws IOException {
@@ -45,7 +48,9 @@ public class LoginController {
 	}
 
 	public void goToMainScreen(ActionEvent event) throws IOException {
-		Parent home_page_parent = FXMLLoader.load(getClass().getResource(Files.MAIN));
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(Files.MAIN));
+		fxmlLoader.setControllerFactory(applicationContext::getBean);
+		Parent home_page_parent = fxmlLoader.load();
 		Scene home_page_scene = new Scene(home_page_parent,600,400);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.hide();

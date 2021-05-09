@@ -10,11 +10,16 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Admin extends User {
+public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     @Column(unique=true)
 	private String username;
 	private String password;
+    private String firstname;
+    private String lastname;
+    private String CIN;
+    private String email;
+    private String phone;
 }

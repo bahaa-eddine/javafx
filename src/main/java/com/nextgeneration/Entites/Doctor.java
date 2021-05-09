@@ -9,9 +9,14 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Doctor extends User {
+public class Doctor {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
     private Speciality speciality;
+    private String firstname;
+    private String lastname;
+    private String CIN;
+    private String email;
+    private String phone;
 }

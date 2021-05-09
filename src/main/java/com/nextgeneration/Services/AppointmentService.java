@@ -1,5 +1,8 @@
 package com.nextgeneration.Services;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,8 @@ public class AppointmentService {
 	
 	@Autowired
 	private AppointmentRepository appointmentRepository;
+	@Autowired
+	private CalendarService calendarService;
 	
 	public Iterable<Appointment> getAll() {
 		return appointmentRepository.findAll();
@@ -33,6 +38,10 @@ public class AppointmentService {
 		old.setDoctor(appointment.getDoctor());
 		old.setPatient(appointment.getPatient());
 		return appointmentRepository.save(old);
+	}
+	
+	public List<Appointment> getAppointmentsByDate(Date date){
+		return calendarService.getCalendarByDate(date).get(0).getAppointments();
 	}
 
 }

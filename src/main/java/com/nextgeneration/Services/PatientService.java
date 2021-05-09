@@ -37,5 +37,9 @@ public class PatientService {
 		old.setPhone(patient.getPhone());
 		return patientRepository.save(old);
 	}
+	
+	public long count() {
+		return patientRepository.count();
+	}
 
 }
